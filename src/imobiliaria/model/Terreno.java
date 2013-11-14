@@ -18,10 +18,6 @@ public class Terreno {
     protected Pessoa proprietario;
     protected String estado;
     
-    public static final String ESTADO_VENDA = "Venda";
-    public static final String ESTADO_LOCACAO = "Locaçao";
-    
-    
 
     public Terreno() {
         

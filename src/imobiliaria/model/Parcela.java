@@ -13,7 +13,7 @@ public class Parcela {
     private int id;
     private float valor;
     private boolean paga = false;
-    private Data dataVencimento;
+    private int diaVencimento;
 
     public int getId() {
         return id;
@@ -39,12 +39,12 @@ public class Parcela {
         this.paga = paga;
     }
 
-    public Data getDataVencimento() {
-        return dataVencimento;
+    public int getDiaVencimento() {
+        return diaVencimento;
     }
 
-    public void setDataVencimento(Data dataVencimento) {
-        this.dataVencimento = dataVencimento;
+    public void setDiaVencimento(int diaVencimento) {
+        this.diaVencimento = diaVencimento;
     }
     
     

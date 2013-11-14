@@ -33,11 +33,11 @@ public class TelaNavegacao extends Tela {
             System.out.println("== PROGRAMA PARA IMOBILIÁRIA ==");
             System.out.println("1. Tela pessoas.");
             System.out.println("2. Tela imoveis.");
-            System.out.println("3. Tela alugueis");
-            System.out.println("4. Tela vendas");
+            System.out.println("3. Tela alugueis.");
+            System.out.println("4. Tela vendas.");
             System.out.println("5. Sair.");
 
-            System.out.println("Digite a opcao desejada:");
+            System.out.println("Digite a opcão desejada :");
             input = scan.nextLine();
             opcao = Integer.parseInt(input);
 

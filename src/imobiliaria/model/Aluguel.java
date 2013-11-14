@@ -18,6 +18,7 @@ public class Aluguel {
     private Data dataInicio;
     private Data dataFinal;
     private float valor;
+    private int duracaoContrato;
 
     public Aluguel() {
         parcelas = new ArrayList<>();
@@ -71,4 +72,21 @@ public class Aluguel {
         this.valor = valor;
     }
     
+    public static void listarAluguel(){
+    
+    }
+
+    public int getDuracaoContrato() {
+        return duracaoContrato;
+    }
+
+    public void setDuracaoContrato(int duracaoContrato) {
+        this.duracaoContrato = duracaoContrato;
+        for (int i = 0; i < duracaoContrato; i++) {
+            Parcela p = new Parcela();
+            p.setId(i);
+            p.setValor(this.getValor());
+            p.setDiaVencimento(15);
+        }
+    }
 }

@@ -5,6 +5,7 @@
 package imobiliaria.view;
 
 import imobiliaria.controller.Controlador;
+import java.util.Scanner;
 
 /**
  *
@@ -12,9 +13,14 @@ import imobiliaria.controller.Controlador;
  */
 public abstract class Tela {
     
+    protected Scanner scan;
+    protected String input;
+    
     public abstract void mostra();
+    
 
     public Tela(Controlador controlador) {
+        scan = new Scanner(System.in);
         setControlador(controlador);
         controlador.setTela(this);
     }

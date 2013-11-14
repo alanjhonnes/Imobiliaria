@@ -6,6 +6,8 @@ package imobiliaria.view;
 
 import imobiliaria.controller.Controlador;
 import imobiliaria.controller.ControladorImoveis;
+import imobiliaria.model.Imovel;
+import imobiliaria.model.Pessoa;
 import imobiliaria.model.Terreno;
 import java.util.List;
 import java.util.Scanner;
@@ -31,9 +33,8 @@ public class TelaImoveis extends Tela {
     }
     
     private void mostraMenu() {
-        String input;
         int opcao = 0;
-        Scanner scan = new Scanner(System.in);
+        
 
         while (opcao != 5) {
 
@@ -54,7 +55,7 @@ public class TelaImoveis extends Tela {
                     break;
 
                 case 2:
-                    
+                    adicionaImovel();
                     break;
 
                 case 3:
@@ -91,6 +92,59 @@ public class TelaImoveis extends Tela {
     @Override
     public void setControlador(Controlador controlador) {
         this.controlador = (ControladorImoveis) controlador;
+    }
+
+    private void adicionaImovel() {
+        Terreno t = new Terreno();
+
+        int id;
+        String endereco;
+        String estado;
+        float iptu;
+        String cpf;
+        Pessoa pessoa = new Pessoa();
+        float preco;
+        
+        
+        System.out.println("Adicionar imóvel");
+        System.out.println("Digite o ID do imóvel: ");
+        input = scan.nextLine();
+        id = Integer.parseInt(input);
+        System.out.println("Digite o endereço: ");
+        endereco = scan.nextLine();
+        input = "";
+        while(!(input.equals("v") || input.equals("l"))){
+            System.out.println("Digite o estado do imóvel (v para Venda, l para Locação: ");
+            input = scan.nextLine();
+            if(input.equals("v")){
+                estado = Imovel.ESTADO_VENDA;
+            }
+            else if(input.equals("l")){
+                estado = Imovel.ESTADO_LOCACAO;
+            }
+        }
+        
+        System.out.println("Digite o valor do iptu:");
+        iptu = Float.parseFloat(scan.nextLine());
+        System.out.println("Digite o valor do imóvel:");
+        preco = Float.parseFloat(scan.nextLine());
+        System.out.println("Digite o CPF do proprietário:");
+        cpf = scan.nextLine();
+        input = "";
+        while(!(input.equals("t") || input.equals("c")|| input.equals("p"))){
+            System.out.println("Selecione o tipo de imóvel (t para Terreno, c para Casa, p para Prédio):");
+            input = scan.nextLine();
+            if(input.equals("t")){
+                estado = Imovel.TIPO_TERRENO;
+                controlador.adicionaTerreno(id, endereco, estado, iptu, preco, pessoa);
+            }
+            else if(input.equals("c")){
+                estado = Imovel.TIPO_CASA;
+            }
+            else if(input.equals("p")){
+                estado = Imovel.TIPO_PREDIO;
+            }
+        }
     }
 
     

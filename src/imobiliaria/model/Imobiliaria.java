@@ -69,13 +69,27 @@ public class Imobiliaria {
         Terreno t = new Terreno();
         t.setDataCadastro(new Data(13, 10, 2013));
         t.setEndereco("Avenida eng. Steuvax 2522");
-        t.setEstado(Terreno.ESTADO_LOCACAO);
+        t.setEstado(Imovel.ESTADO_LOCACAO);
         t.setId(1);
         t.setIptu(5323);
         t.setPreco(5456454);
         t.setProprietario(p);
         imoveis.add(t);
+        
+        populaAluguel();
     }
+    
+    private void populaAluguel() {
+         Aluguel a = new Aluguel();
+         Pessoa p = new Pessoa();
+         p.setNome("Zueira Zuado");
+         a.setLocatario(p);
+         //a.setImovel();
+         a.setDataInicio(new Data(02, 01, 2013));
+         a.setDataFinal(new Data(02, 01, 2014));
+         a.setDuracaoContrato(12);
+
+     }
     
     
     

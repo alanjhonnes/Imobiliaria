@@ -14,7 +14,7 @@ public class Casa extends Terreno {
 
     @Override
     public String getTipo() {
-        return "Casa";
+        return Imovel.TIPO_CASA;
     }
 
     public String getArea() {

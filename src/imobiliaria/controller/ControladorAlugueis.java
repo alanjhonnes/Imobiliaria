@@ -17,9 +17,7 @@ public class ControladorAlugueis extends Controlador{
 
     public ControladorAlugueis(List<Aluguel> alugueis) {
         this.alugueis = alugueis;
-    }
-    
-    
+    }    
 
     public List<Aluguel> getAlugueis() {
         return alugueis;
