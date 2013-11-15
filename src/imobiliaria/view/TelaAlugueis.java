@@ -54,15 +54,19 @@ public class TelaAlugueis extends Tela {
                     break;
 
                 case 2:
-
+                    Aluguel.adicionarAluguel();
                     break;
 
                 case 3:
-
+                    Aluguel.editarAluguel();
                     break;
 
                 case 4:
-                 
+                    Aluguel.removerAluguel();
+                    break;
+
+                case 5:
+                    Aluguel.registrarPgtoAluguel();
                     break;
             }
         }
