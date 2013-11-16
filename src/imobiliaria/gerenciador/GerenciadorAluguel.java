@@ -19,4 +19,10 @@ public class GerenciadorAluguel {
     public static void inicializa(List<Aluguel> modelo){
         aluguel = modelo;
     }
+    public static int geraIDAluguel(){
+        if(aluguel.isEmpty()){
+            return 1;
+        }
+        return aluguel.get(aluguel.size() -1).getId() + 1;
+    }
 }

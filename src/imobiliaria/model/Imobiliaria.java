@@ -93,8 +93,4 @@ public class Imobiliaria {
          a.setDuracaoContrato(12);
 
      }
-    
-    
-    
-    
 }
