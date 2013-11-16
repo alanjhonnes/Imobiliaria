@@ -7,6 +7,7 @@ package imobiliaria.view;
 import imobiliaria.controller.Controlador;
 import imobiliaria.controller.ControladorAlugueis;
 import imobiliaria.model.Aluguel;
+import imobiliaria.model.Pessoa;
 import java.util.List;
 import java.util.Scanner;
 
@@ -50,26 +51,40 @@ public class TelaAlugueis extends Tela {
 
             switch (opcao) {
                 case 1:
-                    Aluguel.listarAluguel();
+                    listarAluguel();
                     break;
 
                 case 2:
-                    Aluguel.adicionarAluguel();
+                    adicionarAluguel();
                     break;
 
                 case 3:
-                    Aluguel.editarAluguel();
+                    editarAluguel();
                     break;
 
                 case 4:
-                    Aluguel.removerAluguel();
+                    removerAluguel();
                     break;
 
                 case 5:
-                    Aluguel.registrarPgtoAluguel();
+                    registrarPgtoAluguel();
                     break;
             }
         }
+    }
+
+    public static void listarAluguel() {
+        for (int i = 0; i < alugueis.size(); i++) {
+            Aluguel aluguel = alugueis.get(i);
+            mostraAluguel(aluguel);
+            System.out.println("-----------");
+        }
+    }
+    
+    public void mostraAluguel(Aluguel aluguel){
+        System.out.println("Aluguel: ");
+        System.out.println("Locatario: " + aluguel.getLocatario());
+        System.out.println("Preço: " + aluguel.getValor());
     }
 
     @Override
@@ -80,6 +95,18 @@ public class TelaAlugueis extends Tela {
     @Override
     public void setControlador(Controlador controlador) {
         this.controlador = (ControladorAlugueis) controlador;
+    }
+
+    private void adicionarAluguel() {
+        Aluguel a = new Aluguel();
+
+        int id;
+        String endereco;
+        String estado;
+        float iptu;
+        String cpf;
+        Pessoa pessoa = new Pessoa();
+        float preco;
     }
 
 }

@@ -12,6 +12,10 @@ import java.util.List;
  * @author alan.jbssa
  */
 public class Aluguel {
+
+    public static int size() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private List<Parcela> parcelas;
     private Terreno imovel;
     private Pessoa locatario;
@@ -70,10 +74,6 @@ public class Aluguel {
 
     public void setValor(float valor) {
         this.valor = valor;
-    }
-    
-    public static void listarAluguel(){
-    
     }
 
     public int getDuracaoContrato() {
