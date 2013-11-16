@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class Aluguel {
 
+    private int id;
     private List<Parcela> parcelas;
     private Terreno imovel;
     private Pessoa locatario;
@@ -88,14 +89,13 @@ public class Aluguel {
     }
 
     public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    public static int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return id;
     }
 
-    public void remove(Aluguel aluguel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setId(int id) {
+        this.id = id;
     }
+
+    
+    
 }
