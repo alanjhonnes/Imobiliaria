@@ -14,15 +14,22 @@ import java.util.List;
  * @author senac2012
  */
 public class GerenciadorAluguel {
+
     private static List<Aluguel> aluguel;
-    
-    public static void inicializa(List<Aluguel> modelo){
+
+    public static void inicializa(List<Aluguel> modelo) {
         aluguel = modelo;
     }
-    public static int geraIDAluguel(){
-        if(aluguel.isEmpty()){
+
+    public static int geraIDAluguel() {
+        if (aluguel.isEmpty()) {
             return 1;
         }
-        return aluguel.get(aluguel.size() -1).getId() + 1;
+        return aluguel.get(aluguel.size() - 1).getId() + 1;
     }
+
+    public static void remove(Aluguel aluguel) {
+        aluguel.remove(aluguel);
+    }
+
 }

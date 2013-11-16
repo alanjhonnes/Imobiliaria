@@ -33,6 +33,13 @@ public class ControladorAlugueis extends Controlador{
         return GerenciadorPessoa.buscaPessoaPorCPF(cpf);
     }
     
+     public Aluguel buscaAluguel(int id) {
+        return GerenciadorAluguel.buscaAluguelPorId(id);
+    }
+
+    public void removeAluguel(Aluguel aluguel) {
+        GerenciadorAluguel.remove(aluguel);
+    }
     
     
     

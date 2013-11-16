@@ -104,8 +104,8 @@ public class TelaAlugueis extends Tela {
     }
 
     private void adicionarAluguel() {
+        
         Aluguel a = new Aluguel();
-
         int id;
         Pessoa locatario;
         Data dataInicio;
@@ -114,29 +114,25 @@ public class TelaAlugueis extends Tela {
         int parcelas;
         float valor;
 
-        System.out.println("Adicionar Aluguél");
+        System.out.println("Adicionar Aluguel");
         
         System.out.println("Adicionar Locatario");
         locatario = selecionaPessoa();
-        
-        System.out.println("Digite o valor do Aluguel:");
-        valor = Float.parseFloat(scan.nextLine());
-        
+               
         System.out.println("Adicionar Data Inicio");
-        
-        
-        
         dataInicio = lerData();
-        
-        
+               
         System.out.println("Adicionar Data Final");
-        
         dataFinal = lerData();
-                
-        
+         
         System.out.println("Adicionar Duração Contrato");
         duracaoContrato = Integer.parseInt(scan.nextLine());
         
+        System.out.println("Adicionar numero de Parcelas");
+        parcelas = Integer.parseInt(scan.nextLine());
+        
+        System.out.println("Digite o valor do Aluguel:");
+        valor = Float.parseFloat(scan.nextLine());
     }          
         
     private Pessoa selecionaPessoa() {
@@ -167,7 +163,16 @@ public class TelaAlugueis extends Tela {
     }
 
     private void removerAluguel() {
-       
+       System.out.println("Remover Locatorio");
+        System.out.println("Digite o ID do Locatario: ");
+        input = scan.nextLine();
+        int id = Integer.parseInt(input);
+        Aluguel aluguel = controlador.buscaPessoa(id);
+        if (aluguel != null) {
+            controlador.removeAluguel(aluguel);
+        } else {
+            System.out.println("Locatario nao encontrado.");
+        }
     }
 
     private void registrarPgtoAluguel() {
