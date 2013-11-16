@@ -4,7 +4,9 @@
  */
 package imobiliaria.controller;
 
+import imobiliaria.gerenciador.GerenciadorPessoa;
 import imobiliaria.model.Aluguel;
+import imobiliaria.model.Pessoa;
 import java.util.List;
 
 /**
@@ -25,6 +27,10 @@ public class ControladorAlugueis extends Controlador{
 
     public void setAlugueis(List<Aluguel> alugueis) {
         this.alugueis = alugueis;
+    }
+
+    public Pessoa buscaPessoa(String cpf) {
+        return GerenciadorPessoa.buscaPessoaPorCPF(cpf);
     }
     
     

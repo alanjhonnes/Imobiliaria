@@ -74,7 +74,7 @@ public class TelaAlugueis extends Tela {
         }
     }
 
-    public static void listarAluguel() {
+    public void listarAluguel() {
         for (int i = 0; i < alugueis.size(); i++) {
             Aluguel aluguel = alugueis.get(i);
             mostraAluguel(aluguel);
@@ -107,9 +107,9 @@ public class TelaAlugueis extends Tela {
         Aluguel a = new Aluguel();
 
         int id;
-        Pessoa pessoa = new Pessoa();
-        int dataInicio;
-        int dataFinal;
+        Pessoa locatario;
+        Data dataInicio;
+        Data dataFinal;
         int duracaoContrato;
         int parcelas;
         float valor;
@@ -123,58 +123,54 @@ public class TelaAlugueis extends Tela {
         valor = Float.parseFloat(scan.nextLine());
         
         System.out.println("Adicionar Data Inicio");
-        System.out.println("Dia(DD)");
-        Data data = new Data();
-        int dia = Integer.parseInt(scan.nextLine());
-        data.setDia(dia);
-        System.out.println("Mês(MM)");
-        int mes = Integer.parseInt(scan.nextLine());
-        data.setMes(mes);   
-        System.out.println("Ano(AAAA)");
-        int ano = Integer.parseInt(scan.nextLine());
-        data.setAno(ano);
+        
+        
+        
+        dataInicio = lerData();
+        
         
         System.out.println("Adicionar Data Final");
-        System.out.println("Dia(DD)");
-        int dia = Integer.parseInt(scan.nextLine());
-        data.setDia(dia);
-        System.out.println("Mês(MM)");
-        int mes = Integer.parseInt(scan.nextLine());
-        data.setMes(mes);   
-        System.out.println("Ano(AAAA)");
-        int ano = Integer.parseInt(scan.nextLine());
-        data.setAno(ano);
+        
+        dataFinal = lerData();
                 
         
         System.out.println("Adicionar Duração Contrato");
-        duracaoContrato = Int.parseInt(scan.nextLine());
+        duracaoContrato = Integer.parseInt(scan.nextLine());
         
-                
-        input = "";
-        while (!(input.equals("t") || input.equals("c") || input.equals("p"))) {
-            System.out.println("Selecione o tipo de imóvel (t para Terreno, c para Casa, p para Prédio):");
-            input = scan.nextLine();
-            if (input.equals("t")) {
-                controlador.adicionaTerreno(endereco, estado, iptu, preco, proprietario);
-            } else if (input.equals("c")) {
-                String area = selecionaArea();
-                controlador.adicionaCasa(endereco, estado, iptu, preco, proprietario, area);
-            } else if (input.equals("p")) {
-                String area = selecionaArea();
-                float condominio;
-            }
-        }
+    }          
         
     private Pessoa selecionaPessoa() {
         Pessoa proprietario = null;
         while (proprietario == null) {
             System.out.println("Digite o CPF do proprietário:");
             String cpf = scan.nextLine();
-            proprietario = controlador.buscaProprietario(cpf);
+            proprietario = controlador.buscaPessoa(cpf);
             if (proprietario == null) {
                 System.out.println("CPF nao encontrado.");
             }
         }
         return proprietario;
+    }
+
+    private Data lerData() {
+        System.out.println("Dia(DD):");
+        int dia = Integer.parseInt(scan.nextLine());
+        System.out.println("Mês(MM):");
+        int mes = Integer.parseInt(scan.nextLine()); 
+        System.out.println("Ano(AAAA):");
+        int ano = Integer.parseInt(scan.nextLine());
+        return new Data(dia, mes, ano);
+    }
+
+    private void editarAluguel() {
+        
+    }
+
+    private void removerAluguel() {
+       
+    }
+
+    private void registrarPgtoAluguel() {
+        
     }
 }
