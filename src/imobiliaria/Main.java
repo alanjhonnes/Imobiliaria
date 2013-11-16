@@ -9,6 +9,10 @@ import imobiliaria.controller.ControladorImoveis;
 import imobiliaria.controller.ControladorNavegacao;
 import imobiliaria.controller.ControladorPessoas;
 import imobiliaria.controller.ControladorVendas;
+import imobiliaria.gerenciador.GerenciadorAluguel;
+import imobiliaria.gerenciador.GerenciadorImovel;
+import imobiliaria.gerenciador.GerenciadorPessoa;
+import imobiliaria.gerenciador.GerenciadorVenda;
 import imobiliaria.view.TelaNavegacao;
 import imobiliaria.model.Imobiliaria;
 import imobiliaria.view.TelaAlugueis;
@@ -30,6 +34,12 @@ public class Main {
     
     public static void main(String[] args) {
         modelo = new Imobiliaria();
+        
+        GerenciadorImovel.inicializa(modelo.getImoveis());
+        GerenciadorAluguel.inicializa(modelo.getAlugueis());
+        GerenciadorPessoa.inicializa(modelo.getPessoas());
+        GerenciadorVenda.inicializa(modelo.getVendas());
+        
         iniciaTelas();
         Navegacao.mostraTela(Navegacao.TELA_NAVEGACAO);
     }

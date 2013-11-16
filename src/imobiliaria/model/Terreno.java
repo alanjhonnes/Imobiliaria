@@ -20,7 +20,7 @@ public class Terreno {
     
 
     public Terreno() {
-        
+        dataCadastro = new Data();
     }
 
     public int getId() {

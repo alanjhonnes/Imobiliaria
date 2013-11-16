@@ -16,4 +16,7 @@ public class Imovel {
     
     public static final String ESTADO_VENDA = "Venda";
     public static final String ESTADO_LOCACAO = "Locaçao";
+    
+    public static final String AREA_RESIDENCIAL = "Residencial";
+    public static final String AREA_COMERCIAL = "Comercial";
 }

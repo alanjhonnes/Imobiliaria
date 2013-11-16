@@ -5,10 +5,21 @@
  */
 package imobiliaria.gerenciador;
 
+import static imobiliaria.gerenciador.GerenciadorPessoa.pessoas;
+import imobiliaria.model.Pessoa;
+import imobiliaria.model.Venda;
+import java.util.List;
+
 /**
  *
  * @author senac2012
  */
 public class GerenciadorVenda {
+    
+    private static List<Venda> vendas;
+    
+    public static void inicializa(List<Venda> modelo){
+        vendas = modelo;
+    }
     
 }

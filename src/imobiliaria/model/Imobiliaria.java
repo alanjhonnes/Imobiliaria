@@ -60,12 +60,15 @@ public class Imobiliaria {
 
     private void popula() {
         Pessoa p = new Pessoa();
-        p.setCPF("98237189237");
+        p.setCPF("1234");
         p.setDataNascimento(new Data(13, 3, 1990));
         p.setEmail("alanjhonnes@hotmail.com");
         p.setEndereco("Rua joaquim vilela 255");
         p.setNome("Alan");
         p.setTelefone("555555555");
+        
+        pessoas.add(p);
+        
         Terreno t = new Terreno();
         t.setDataCadastro(new Data(13, 10, 2013));
         t.setEndereco("Avenida eng. Steuvax 2522");

@@ -5,10 +5,18 @@
  */
 package imobiliaria.gerenciador;
 
+import imobiliaria.model.Aluguel;
+import imobiliaria.model.Venda;
+import java.util.List;
+
 /**
  *
  * @author senac2012
  */
 public class GerenciadorAluguel {
+    private static List<Aluguel> aluguel;
     
+    public static void inicializa(List<Aluguel> modelo){
+        aluguel = modelo;
+    }
 }
