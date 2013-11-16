@@ -15,21 +15,31 @@ import java.util.List;
  */
 public class GerenciadorAluguel {
 
-    private static List<Aluguel> aluguel;
+    private static List<Aluguel> alugueis;
 
     public static void inicializa(List<Aluguel> modelo) {
-        aluguel = modelo;
+        alugueis = modelo;
     }
 
     public static int geraIDAluguel() {
-        if (aluguel.isEmpty()) {
+        if (alugueis.isEmpty()) {
             return 1;
         }
-        return aluguel.get(aluguel.size() - 1).getId() + 1;
+        return alugueis.get(alugueis.size() - 1).getId() + 1;
     }
 
     public static void remove(Aluguel aluguel) {
-        aluguel.remove(aluguel);
+        alugueis.remove(aluguel);
+    }
+
+    public static Aluguel buscaAluguelPorId(int id) {
+        for (int i = 0; i < alugueis.size(); i++) {
+            Aluguel aluguel = alugueis.get(i);
+            if(aluguel.getId() == id){
+                return aluguel;
+            }
+        }
+        return null;
     }
 
 }

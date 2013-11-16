@@ -4,6 +4,7 @@
  */
 package imobiliaria.controller;
 
+import imobiliaria.gerenciador.GerenciadorAluguel;
 import imobiliaria.gerenciador.GerenciadorPessoa;
 import imobiliaria.model.Aluguel;
 import imobiliaria.model.Pessoa;

@@ -167,7 +167,7 @@ public class TelaAlugueis extends Tela {
         System.out.println("Digite o ID do Locatario: ");
         input = scan.nextLine();
         int id = Integer.parseInt(input);
-        Aluguel aluguel = controlador.buscaPessoa(id);
+        Aluguel aluguel = controlador.buscaAluguel(id);
         if (aluguel != null) {
             controlador.removeAluguel(aluguel);
         } else {
