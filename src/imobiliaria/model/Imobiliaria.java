@@ -79,19 +79,22 @@ public class Imobiliaria {
         t.setProprietario(p);
         imoveis.add(t);
         
-        populaAluguel();
-    }
-    
-    private void populaAluguel() {
-         Aluguel a = new Aluguel();
-         Pessoa p = new Pessoa();
-         p.setNome("Zueira Zuado");
+        
+        Aluguel a = new Aluguel();
+       
          a.setLocatario(p);
+         a.setImovel(t);
          a.setDataInicio(new Data(02, 01, 2013));
          a.setDataFinal(new Data(02, 01, 2014));
          a.setDuracaoContrato(12);
 
          alugueis.add(a);
+        
+        populaAluguel();
+    }
+    
+    private void populaAluguel() {
+         
          
      }
     
