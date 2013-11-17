@@ -37,7 +37,7 @@ public class TelaAlugueis extends Tela {
         int opcao = 0;
         Scanner scan = new Scanner(System.in);
 
-        while (opcao != 7) {
+        while (opcao != 9) {
 
             System.out.println("== Menu Aluguel ==");
             System.out.println("1. Listar.");
