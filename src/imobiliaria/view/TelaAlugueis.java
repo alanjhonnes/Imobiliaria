@@ -202,7 +202,7 @@ public class TelaAlugueis extends Tela {
             System.out.println("Digite o valor do Aluguel:");
             valor = Float.parseFloat(scan.nextLine());
 
-            controlador.adicionaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, parcelas, valor);
+            controlador.editaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, parcelas, valor);
 
         }
 

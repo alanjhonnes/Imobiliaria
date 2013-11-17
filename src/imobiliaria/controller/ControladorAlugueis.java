@@ -57,7 +57,17 @@ public class ControladorAlugueis extends Controlador{
         aluguel.setId(GerenciadorAluguel.geraIDAluguel());
         GerenciadorAluguel.adicionaAluguel(aluguel);
     }
-    
+    public void editaAluguel(Pessoa locatario, Data dataInicio, Data dataFinal, int duracaoContrato, int parcelas, float valor) {
+        Aluguel aluguel = new Aluguel();
+        aluguel.setLocatario(locatario);
+        aluguel.setDataInicio(dataInicio);
+        aluguel.setDataFinal(dataFinal);
+        aluguel.setValor(valor);
+        aluguel.setDuracaoContrato(duracaoContrato);
+        aluguel.setId(GerenciadorAluguel.geraIDAluguel());
+        GerenciadorAluguel.adicionaAluguel(aluguel);
+    }
+
     
     
 }
