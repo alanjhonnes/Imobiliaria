@@ -263,13 +263,8 @@ public class TelaAlugueis extends Tela {
             System.out.println("Parcelas: " + aluguel.getParcelas().size());
             System.out.println("Preço: " + aluguel.getValor());
             
-            listarParcelas(parcelas);
-            
+            listarParcelas(parcelas);   
         }
-        
-        
-        
-        
     }
 
     private void listarParcelas(List<Parcela> parcelas) {
@@ -281,5 +276,13 @@ public class TelaAlugueis extends Tela {
             System.out.println("Dia Vencimento: " + parcela.getDiaVencimento());
             System.out.println("-------");
         }
+    }
+    
+    private parcela listarParcelasPagas() {
+        
+    }
+        
+    private parcela listarParcelasNaoPagas() {
+        
     }
 }
