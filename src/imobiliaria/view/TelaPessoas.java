@@ -93,17 +93,10 @@ public class TelaPessoas extends Tela {
     }
     
     private void adicionaPessoas() {
-        Pessoa p = new Pessoa();
+        Pessoa pessoa = new Pessoa();
 
         String nome;
-        String CPF;
-        Data dataNascimento = new Data();
-        int dia = Integer.parseInt(scan.nextLine());
-        dataNascimento.setDia(dia);
-        int mes = Integer.parseInt(scan.nextLine());
-        dataNascimento.setMes(mes);
-        int ano = Integer.parseInt(scan.nextLine());
-        dataNascimento.setMes(ano);        
+        String CPF; 
         String endereco;
         String telefone;
         String email;                               
@@ -117,7 +110,7 @@ public class TelaPessoas extends Tela {
         CPF = scan.nextLine();
 
         System.out.println("Digite a Data de Nascimento:");
-        endereco = scan.nextLine();
+        Data dataNascimento = lerData();
         
         System.out.println("Digite o Endereço:");
         endereco = scan.nextLine();
@@ -128,19 +121,13 @@ public class TelaPessoas extends Tela {
         System.out.println("Digite o Email:");
         email = scan.nextLine();       
                       
-        controlador.adicionaPessoa(nome, CPF, dataNascimento, endereco, telefone, email);        
+        controlador.adicionaPessoa(nome, CPF, dataNascimento, endereco, telefone, email);
     } 
     
     private void editaPessoa() {        
         String nome;
         String CPF;
-        Data dataNascimento = new Data();
-        int dia = Integer.parseInt(scan.nextLine());
-        dataNascimento.setDia(dia);
-        int mes = Integer.parseInt(scan.nextLine());
-        dataNascimento.setMes(mes);
-        int ano = Integer.parseInt(scan.nextLine());
-        dataNascimento.setMes(ano);        
+         
         String endereco;
         String telefone;
         String email;
@@ -148,8 +135,7 @@ public class TelaPessoas extends Tela {
         System.out.println("Editar Pessoas");
         
         System.out.println("Digite o CPF da Pessoa: ");
-        input = scan.nextLine();
-        CPF = String.valueOf(input);
+        CPF = scan.nextLine();
         Pessoa pessoa = controlador.buscaPessoa(CPF);
         if (pessoa != null) {
             mostraPessoa(pessoa);
@@ -161,7 +147,7 @@ public class TelaPessoas extends Tela {
             CPF = scan.nextLine();
 
             System.out.println("Digite a Data de Nascimento:");
-            endereco = scan.nextLine();
+            Data dataNascimento = lerData();
         
             System.out.println("Digite o Endereço:");
             endereco = scan.nextLine();
@@ -190,6 +176,19 @@ public class TelaPessoas extends Tela {
         } else {
             System.out.println("Pessoa nao encontrado.");
         }
+    }
+    
+    private Data lerData() {
+        System.out.println("Dia(DD):");
+        int dia = Integer.parseInt(scan.nextLine());
+        System.out.println("Mês(MM):");
+        int mes = Integer.parseInt(scan.nextLine());
+        System.out.println("Ano(AAAA):");
+        int ano = Integer.parseInt(scan.nextLine());
+        Data dataNascimento = new Data();
+        dataNascimento.setDia(dia);
+        dataNascimento.setMes(mes);
+        return dataNascimento;       
     }
     
 }

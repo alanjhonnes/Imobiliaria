@@ -3,6 +3,7 @@ package imobiliaria.controller;
 import imobiliaria.gerenciador.GerenciadorPessoa;
 import imobiliaria.model.Data;
 import imobiliaria.model.Pessoa;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -25,10 +26,15 @@ public class ControladorPessoas extends Controlador {
         this.pessoas = pessoas;
     }
 
-    public void adicionaPessoa(String nome, String CPF,
-            Data dataNascimento, String endereco, String telefone, String email) {
-        GerenciadorPessoa.adicionaPessoa(nome, CPF, dataNascimento, endereco,
-                telefone, email);
+    public void adicionaPessoa(String nome, String CPF, Data dataNascimento, String endereco, String telefone, String email) {
+        Pessoa pessoa = new Pessoa();
+        pessoa.setNome(nome);
+        pessoa.setCPF(CPF);
+        pessoa.setDataNascimento(dataNascimento);
+        pessoa.setEndereco(endereco);
+        pessoa.setTelefone(telefone);
+        pessoa.setEmail(email);
+        GerenciadorPessoa.adiciona(pessoa);
     }
 
     public Pessoa buscaPessoa(String CPF) {
