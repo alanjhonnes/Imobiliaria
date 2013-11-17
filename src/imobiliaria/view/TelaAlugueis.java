@@ -268,8 +268,6 @@ public class TelaAlugueis extends Tela {
         }
         
         
-        
-        
     }
 
     private void listarParcelas(List<Parcela> parcelas) {
