@@ -6,6 +6,7 @@
 package imobiliaria.gerenciador;
 
 import imobiliaria.model.Aluguel;
+import imobiliaria.model.Terreno;
 import imobiliaria.model.Venda;
 import java.util.List;
 
@@ -53,5 +54,22 @@ public class GerenciadorAluguel {
     public static void adicionaParcela(Aluguel aluguel){
         
     }
+
+    public static Aluguel buscaAluguelPorImovel(Terreno imovel) {
+        for (int i = 0; i < alugueis.size(); i++) {
+            Aluguel aluguel = alugueis.get(i);
+            if(aluguel.getImovel() == imovel){
+                return aluguel;
+            }
+        }
+        
+        return null;
+    }
+
+    public static List<Aluguel> getAlugueis() {
+        return alugueis;
+    }
+    
+    
 
 }

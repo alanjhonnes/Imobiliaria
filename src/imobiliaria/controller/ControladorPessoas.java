@@ -41,8 +41,8 @@ public class ControladorPessoas extends Controlador {
         return GerenciadorPessoa.buscaPessoaPorCPF(CPF);
     }
 
-    public void removePessoa(Pessoa pessoa) {
-        GerenciadorPessoa.removePessoa(pessoa);
+    public boolean removePessoa(Pessoa pessoa) {
+        return GerenciadorPessoa.removePessoa(pessoa);
     }
 
     public void editaPessoa(Pessoa pessoa, String nome, String CPF, Data dataNascimento, String endereco, String telefone, String email) {

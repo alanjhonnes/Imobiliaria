@@ -38,14 +38,16 @@ public class TelaImoveis extends Tela {
         int opcao = 0;
 
 
-        while (opcao != 5) {
+        while (opcao != 7) {
 
             System.out.println("== Menu Imóveis ==");
             System.out.println("1. Listar.");
             System.out.println("2. Adicionar.");
             System.out.println("3. Editar");
             System.out.println("4. Remover");
-            System.out.println("5. Sair.");
+            System.out.println("5. Listar imoveis disponíveis para alugar.");
+            System.out.println("6. Listar imoveis por preço");
+            System.out.println("7. Sair.");
 
             System.out.println("Digite a opcao desejada:");
             input = scan.nextLine();
@@ -66,7 +68,12 @@ public class TelaImoveis extends Tela {
 
                 case 4:
                     removerImovel();
-                    System.out.println("Digite o ID do imóvel:");
+                    break;
+                case 5:
+                    listarDisponiveis();
+                    break;
+                case 6:
+                    buscarPorPreco();
                     break;
             }
         }
@@ -217,7 +224,12 @@ public class TelaImoveis extends Tela {
         int id = Integer.parseInt(input);
         Terreno imovel = controlador.buscaImovel(id);
         if (imovel != null) {
-            controlador.removeImovel(imovel);
+            if(controlador.removeImovel(imovel)){
+                System.out.println("Imovel nao pode ser excluido pois possui um contrato de locacao ativo.");
+            }
+            else {
+                System.out.println("Imovel removido.");
+            }
         } else {
             System.out.println("Imóvel nao encontrado.");
         }
@@ -268,4 +280,29 @@ public class TelaImoveis extends Tela {
             }
         return proprietario;
     }
+    
+    private void listarDisponiveis() {
+        System.out.println("Listando imoveis disponiveis para alugar");
+        List<Terreno> disponiveis = controlador.buscarImoveisDisponiveis();
+        for (int i = 0; i < disponiveis.size(); i++) {
+            Terreno imovel = disponiveis.get(i);
+            mostraImovel(imovel);
+        }
+    }
+
+    private void buscarPorPreco() {
+        System.out.println("Buscar por preco");
+        System.out.println("Digite o valor mínimo:");
+        float min = Float.parseFloat(scan.nextLine());
+        System.out.println("Digite o valor máximo:");
+        float max = Float.parseFloat(scan.nextLine());
+        
+        List<Terreno> resultado = controlador.buscaPorPreco(min, max);
+        for (int i = 0; i < resultado.size(); i++) {
+            Terreno imovel = resultado.get(i);
+            mostraImovel(imovel);
+        }
+    }
+
+    
 }

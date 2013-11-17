@@ -59,7 +59,6 @@ public class TelaPessoas extends Tela {
 
                 case 4:
                     removerPessoa();
-                    System.out.println("Digite o CPF da Pessoa:");
                     break;
             }
         }
@@ -93,7 +92,6 @@ public class TelaPessoas extends Tela {
     }
     
     private void adicionaPessoas() {
-        Pessoa pessoa = new Pessoa();
 
         String nome;
         String CPF; 
@@ -168,11 +166,16 @@ public class TelaPessoas extends Tela {
     private void removerPessoa() {
         System.out.println("Remover Pessoas");
         System.out.println("Digite o CPF da Pessoa: ");
-        input = scan.nextLine();
-        String CPF = String.valueOf(input);
+        String CPF = scan.nextLine();
         Pessoa pessoa = controlador.buscaPessoa(CPF);
-        if (CPF != null) {
-            controlador.removePessoa(pessoa);
+        if (pessoa != null) {
+            if(controlador.removePessoa(pessoa)){
+                System.out.println("Pessoa removida com sucesso.");
+            }
+            else {
+                System.out.println("Pessoa nao pode ser removida pois é proprietaria e/ou locataria.");
+            }
+            
         } else {
             System.out.println("Pessoa nao encontrado.");
         }
@@ -188,6 +191,7 @@ public class TelaPessoas extends Tela {
         Data dataNascimento = new Data();
         dataNascimento.setDia(dia);
         dataNascimento.setMes(mes);
+        dataNascimento.setAno(ano);
         return dataNascimento;       
     }
     

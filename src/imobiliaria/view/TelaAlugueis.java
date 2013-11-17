@@ -8,8 +8,10 @@ import imobiliaria.controller.Controlador;
 import imobiliaria.controller.ControladorAlugueis;
 import imobiliaria.model.Aluguel;
 import imobiliaria.model.Data;
+import imobiliaria.model.Imovel;
 import imobiliaria.model.Parcela;
 import imobiliaria.model.Pessoa;
+import imobiliaria.model.Terreno;
 import java.util.List;
 import java.util.Scanner;
 
@@ -98,12 +100,13 @@ public class TelaAlugueis extends Tela {
 
     public void mostraAluguel(Aluguel aluguel) {
         System.out.println("Aluguel: ");
-        System.out.println("Locatario: " + aluguel.getLocatario());
-        System.out.println("Imovel: " + aluguel.getImovel());
+        System.out.println("Locatario: " + aluguel.getLocatario().getNome());
+        System.out.println("Imovel: " + aluguel.getImovel().getId());
         System.out.println("Data Inicio: " + aluguel.getDataInicio());
         System.out.println("Data Final: " + aluguel.getDataFinal());
         System.out.println("Duracao do Contrato: " + aluguel.getDuracaoContrato());
-        System.out.println("Parcelas: " + aluguel.getParcelas());
+        List<Parcela> parcelas = aluguel.getParcelas();
+        System.out.println("Parcelas: " + aluguel.getParcelas().size());
         System.out.println("Preço: " + aluguel.getValor());
     }
 
@@ -119,9 +122,8 @@ public class TelaAlugueis extends Tela {
 
     private void adicionarAluguel() {
 
-        Aluguel a = new Aluguel();
-        int id;
         Pessoa locatario;
+        Terreno imovel;
         Data dataInicio;
         Data dataFinal;
         int duracaoContrato;
@@ -129,8 +131,11 @@ public class TelaAlugueis extends Tela {
 
         System.out.println("Adicionar Aluguel");
 
-        System.out.println("Adicionar Locatario");
+        System.out.println("Selecionar Locatario");
         locatario = selecionaPessoa();
+        
+        System.out.println("Selecionar Imovel");
+        imovel = selecionaImovel();
 
         System.out.println("Adicionar Data Inicio");
         dataInicio = lerData();
@@ -144,7 +149,7 @@ public class TelaAlugueis extends Tela {
         System.out.println("Digite o valor do Aluguel:");
         valor = Float.parseFloat(scan.nextLine());
 
-        controlador.adicionaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, valor);
+        controlador.adicionaAluguel(locatario, imovel, dataInicio, dataFinal, duracaoContrato, valor);
     }
 
     private Pessoa selecionaPessoa() {
@@ -158,6 +163,23 @@ public class TelaAlugueis extends Tela {
             }
         }
         return proprietario;
+    }
+    
+    private Terreno selecionaImovel() {
+        Terreno imovel = null;
+        while (imovel == null) {
+            System.out.println("Digite o id do imóvel:");
+            int id = Integer.parseInt(scan.nextLine());
+            imovel = controlador.buscaImovel(id);
+            if (imovel == null) {
+                System.out.println("Imovel nao encontrado.");
+            }
+            else if(imovel.getEstado().equals(Imovel.ESTADO_VENDA)){
+                System.out.println("Imovel nao está para locação.");
+                imovel = null;
+            }
+        }
+        return imovel;
     }
 
     private Data lerData() {
@@ -178,6 +200,7 @@ public class TelaAlugueis extends Tela {
         Data dataFinal;
         int duracaoContrato;
         float valor;
+        Terreno imovel;
 
         System.out.println("Editar Aluguel");
         System.out.println("Digite o ID do Aluguel: ");
@@ -189,6 +212,9 @@ public class TelaAlugueis extends Tela {
 
             System.out.println("Editar Locatario");
             locatario = selecionaPessoa();
+            
+            System.out.println("Editar Imovel");
+            imovel = selecionaImovel();
 
             System.out.println("Editar Data Inicio");
             dataInicio = lerData();
@@ -201,8 +227,9 @@ public class TelaAlugueis extends Tela {
 
             System.out.println("Editar o valor do Aluguel:");
             valor = Float.parseFloat(scan.nextLine());
+            
 
-            controlador.editaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, valor);
+            controlador.editaAluguel(locatario, imovel, dataInicio, dataFinal, duracaoContrato, valor);
         }
     }
 

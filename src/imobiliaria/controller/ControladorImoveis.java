@@ -4,12 +4,15 @@
  */
 package imobiliaria.controller;
 
+import imobiliaria.gerenciador.GerenciadorAluguel;
 import imobiliaria.gerenciador.GerenciadorImovel;
 import imobiliaria.gerenciador.GerenciadorPessoa;
 import imobiliaria.model.Casa;
+import imobiliaria.model.Imovel;
 import imobiliaria.model.Pessoa;
 import imobiliaria.model.Predio;
 import imobiliaria.model.Terreno;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,8 +53,8 @@ public class ControladorImoveis extends Controlador {
         return GerenciadorImovel.buscaImovelPorId(id);
     }
 
-    public void removeImovel(Terreno terreno) {
-        GerenciadorImovel.remove(terreno);
+    public boolean removeImovel(Terreno imovel) {
+        return GerenciadorImovel.remove(imovel);
     }
     
     public Pessoa buscaProprietario(String CPF){
@@ -74,6 +77,31 @@ public class ControladorImoveis extends Controlador {
     public void editaPredio(Predio predio, String endereco, String estado, float iptu, float preco, Pessoa proprietario, String area, float condominio) {
         editaCasa(predio, endereco, estado, iptu, preco, proprietario, area);
         predio.setValorCondominio(condominio);
+    }
+
+    public List<Terreno> buscarImoveisDisponiveis() {
+        List<Terreno> disponiveis = new ArrayList<>();
+        for (int i = 0; i < terrenos.size(); i++) {
+            Terreno imovel = terrenos.get(i);
+            if(imovel.getEstado().equals(Imovel.ESTADO_LOCACAO)){
+                if(GerenciadorAluguel.buscaAluguelPorImovel(imovel) == null){
+                    disponiveis.add(imovel);
+                }
+            }
+        }
+        return disponiveis;
+              
+    }
+
+    public List<Terreno> buscaPorPreco(float min, float max) {
+        List<Terreno> resultado = new ArrayList<>();
+        for (int i = 0; i < terrenos.size(); i++) {
+            Terreno imovel = terrenos.get(i);
+            if(imovel.getPreco() >= min && imovel.getPreco() <= max){
+                resultado.add(imovel);
+            }
+        }
+        return resultado;
     }
     
     
