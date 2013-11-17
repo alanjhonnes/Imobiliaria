@@ -9,7 +9,7 @@ import static imobiliaria.gerenciador.GerenciadorPessoa.pessoas;
 import imobiliaria.model.Casa;
 import imobiliaria.model.Pessoa;
 import imobiliaria.model.Predio;
-import imobiliaria.model.Terreno;
+import imobiliaria.model.Terreno;   
 import java.util.List;
 
 /**
@@ -38,7 +38,7 @@ public class GerenciadorImovel {
      * 
      * @param id O Id do imóvel
      * @return O imovel encontrado, ou null se nao foi encontrado
-     */
+     */ 
     public static Terreno buscaImovelPorId(int id){
         for (int i = 0; i < imoveis.size(); i++) {
             Terreno terreno = imoveis.get(i);

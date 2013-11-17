@@ -1,12 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package imobiliaria.model;
 
 /**
  *
- * @author alan.jbssa
+ * @author patrick.smoraes
  */
 public class Pessoa {
     private String nome;
@@ -63,6 +60,5 @@ public class Pessoa {
     public void setEmail(String email) {
         this.email = email;
     }
-    
     
 }

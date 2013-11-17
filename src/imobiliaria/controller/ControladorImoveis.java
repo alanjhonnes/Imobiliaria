@@ -31,7 +31,7 @@ public class ControladorImoveis extends Controlador {
     public void setTerrenos(List<Terreno> terrenos) {
         this.terrenos = terrenos;
     }
-
+    
     public void adicionaTerreno(String endereco, String estado, 
             float iptu, float preco, Pessoa pessoa) {
         GerenciadorImovel.adicionaTerreno(endereco, estado, iptu, preco, pessoa);

@@ -94,7 +94,14 @@ public class Imobiliaria {
 
      }
     
+    private void populaPessoa() {
+        Pessoa pessoa = new Pessoa();
+        pessoa.setCPF("123");
+        pessoa.setDataNascimento(new Data(15, 12, 1993));
+        pessoa.setEmail("patrick.santos.moraes@live.com");
+        pessoa.setEndereco("Diadema Mano :D");
+        pessoa.setNome("Patrick");
+        pessoa.setTelefone("555555555");
     
-    
-    
+    }    
 }
