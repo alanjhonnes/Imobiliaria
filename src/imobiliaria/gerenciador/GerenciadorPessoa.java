@@ -1,6 +1,7 @@
 
 package imobiliaria.gerenciador;
 
+import imobiliaria.model.Data;
 import imobiliaria.model.Pessoa;
 import java.util.List;
 

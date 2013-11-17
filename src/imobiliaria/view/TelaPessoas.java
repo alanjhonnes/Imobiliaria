@@ -128,7 +128,7 @@ public class TelaPessoas extends Tela {
         System.out.println("Digite o Email:");
         email = scan.nextLine();       
                       
-        controlador.adicionaPessoa(nome, CPF, Data dataNascimento, endereco, telefone, email);        
+        controlador.adicionaPessoa(nome, CPF, dataNascimento, endereco, telefone, email);        
     } 
     
     private void editaPessoa() {        
@@ -172,7 +172,7 @@ public class TelaPessoas extends Tela {
             System.out.println("Digite o Email:");
             email = scan.nextLine();    
             
-            controlador.editaPessoa(nome, CPF, Data dataNascimento, endereco, telefone, email);
+            controlador.editaPessoa(pessoa, nome, CPF, dataNascimento, endereco, telefone, email);
            
         } else {
             System.out.println("Pessoa nao encontrada.");
