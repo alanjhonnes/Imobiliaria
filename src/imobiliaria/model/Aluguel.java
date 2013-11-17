@@ -80,11 +80,13 @@ public class Aluguel {
 
     public void setDuracaoContrato(int duracaoContrato) {
         this.duracaoContrato = duracaoContrato;
+        parcelas.clear();
         for (int i = 0; i < duracaoContrato; i++) {
             Parcela p = new Parcela();
             p.setId(i);
             p.setValor(this.getValor());
             p.setDiaVencimento(15);
+            parcelas.add(p);
         }
     }
 

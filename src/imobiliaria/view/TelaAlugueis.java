@@ -125,7 +125,6 @@ public class TelaAlugueis extends Tela {
         Data dataInicio;
         Data dataFinal;
         int duracaoContrato;
-        int parcelas;
         float valor;
 
         System.out.println("Adicionar Aluguel");
@@ -142,13 +141,10 @@ public class TelaAlugueis extends Tela {
         System.out.println("Adicionar Duração Contrato");
         duracaoContrato = Integer.parseInt(scan.nextLine());
 
-        System.out.println("Adicionar numero de Parcelas");
-        parcelas = Integer.parseInt(scan.nextLine());
-
         System.out.println("Digite o valor do Aluguel:");
         valor = Float.parseFloat(scan.nextLine());
 
-        controlador.adicionaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, parcelas, valor);
+        controlador.adicionaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, valor);
     }
 
     private Pessoa selecionaPessoa() {
@@ -181,7 +177,6 @@ public class TelaAlugueis extends Tela {
         Data dataInicio;
         Data dataFinal;
         int duracaoContrato;
-        int parcelas;
         float valor;
 
         System.out.println("Editar Aluguel");
@@ -201,16 +196,13 @@ public class TelaAlugueis extends Tela {
             System.out.println("Editar Data Final");
             dataFinal = lerData();
 
-            System.out.println("Editar Duração Contrato");
+            System.out.println("Editar Duração Contrato (meses)");
             duracaoContrato = Integer.parseInt(scan.nextLine());
-
-            System.out.println("Editar numero de Parcelas");
-            parcelas = Integer.parseInt(scan.nextLine());
 
             System.out.println("Editar o valor do Aluguel:");
             valor = Float.parseFloat(scan.nextLine());
 
-            controlador.editaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, parcelas, valor);
+            controlador.editaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, valor);
         }
     }
 
