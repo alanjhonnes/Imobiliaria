@@ -101,7 +101,7 @@ public class TelaPessoas extends Tela {
         String telefone;
         String email;                               
 
-        System.out.println("\n Adicionar Pessoas \n");
+        System.out.println("\nAdicionar Pessoas\n");
         
         System.out.println("Digite o Nome: ");
         nome = scan.nextLine();                      
