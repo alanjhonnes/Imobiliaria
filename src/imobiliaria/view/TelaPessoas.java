@@ -93,7 +93,7 @@ public class TelaPessoas extends Tela {
     }
     
     private void adicionaPessoas() {
-        Pessoa p = new Pessoa();
+        Pessoa pessoa = new Pessoa();
 
         String nome;
         String CPF;
@@ -128,7 +128,7 @@ public class TelaPessoas extends Tela {
         System.out.println("Digite o Email:");
         email = scan.nextLine();       
                       
-        controlador.adicionaPessoa(nome, CPF, dataNascimento, endereco, telefone, email);        
+        controlador.adicionaPessoa(nome, CPF, dataNascimento, endereco, telefone, email);
     } 
     
     private void editaPessoa() {        

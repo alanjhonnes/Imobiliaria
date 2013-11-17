@@ -26,8 +26,8 @@ public class GerenciadorPessoa {
         return null;
     }
     
-    public static void adiciona(Pessoa p){
-        pessoas.add(p);
+    public static void adiciona(Pessoa pessoa){
+        pessoas.add(pessoa);
                 
     }
     
@@ -35,15 +35,15 @@ public class GerenciadorPessoa {
         pessoas.remove(pessoa);                
     }
     
-    public static void adicionaPessoa(String nome, String CPF, Data dataNacimento, String endereco, String telefone, String email) {
-        Pessoa pessoa = new Pessoa();        
-        pessoa.setNome(nome);
-        pessoa.setCPF(CPF);
-        pessoa.setDataNascimento(dataNacimento);
-        pessoa.setEndereco(endereco);        
-        pessoa.setTelefone(telefone);
-        pessoa.setEmail(email);                
-        pessoas.add(pessoa);
-    }
+//    public static void adicionaPessoa(String nome, String CPF, Data dataNacimento, String endereco, String telefone, String email) {
+//        Pessoa pessoa = new Pessoa();        
+//        pessoa.setNome(nome);
+//        pessoa.setCPF(CPF);
+//        pessoa.setDataNascimento(dataNacimento);
+//        pessoa.setEndereco(endereco);        
+//        pessoa.setTelefone(telefone);
+//        pessoa.setEmail(email);                
+//        pessoas.add(pessoa);
+//    }
     
 }
