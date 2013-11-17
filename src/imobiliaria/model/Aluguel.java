@@ -12,6 +12,8 @@ import java.util.List;
  * @author alan.jbssa
  */
 public class Aluguel {
+
+    private int id;
     private List<Parcela> parcelas;
     private Terreno imovel;
     private Pessoa locatario;
@@ -71,10 +73,6 @@ public class Aluguel {
     public void setValor(float valor) {
         this.valor = valor;
     }
-    
-    public static void listarAluguel(){
-    
-    }
 
     public int getDuracaoContrato() {
         return duracaoContrato;
@@ -89,4 +87,12 @@ public class Aluguel {
             p.setDiaVencimento(15);
         }
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }   
 }

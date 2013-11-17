@@ -14,9 +14,44 @@ import java.util.List;
  * @author senac2012
  */
 public class GerenciadorAluguel {
-    private static List<Aluguel> aluguel;
-    
-    public static void inicializa(List<Aluguel> modelo){
-        aluguel = modelo;
+
+    private static List<Aluguel> alugueis;
+
+    public static void inicializa(List<Aluguel> modelo) {
+        alugueis = modelo;
     }
+
+    public static int geraIDAluguel() {
+        if (alugueis.isEmpty()) {
+            return 1;
+        }
+        return alugueis.get(alugueis.size() - 1).getId() + 1;
+    }
+
+    public static void remove(Aluguel aluguel) {
+        alugueis.remove(aluguel);
+    }
+
+    public static Aluguel buscaAluguelPorId(int id) {
+        for (int i = 0; i < alugueis.size(); i++) {
+            Aluguel aluguel = alugueis.get(i);
+            if(aluguel.getId() == id){
+                return aluguel;
+            }
+        }
+        return null;
+    }
+    
+    public static void adicionaAluguel(Aluguel aluguel){
+        alugueis.add(aluguel);
+    }
+    
+    public static void adicionaParcela(int idAluguel){
+        
+    }
+    
+    public static void adicionaParcela(Aluguel aluguel){
+        
+    }
+
 }

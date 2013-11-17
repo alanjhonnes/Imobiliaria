@@ -87,11 +87,12 @@ public class Imobiliaria {
          Pessoa p = new Pessoa();
          p.setNome("Zueira Zuado");
          a.setLocatario(p);
-         //a.setImovel();
          a.setDataInicio(new Data(02, 01, 2013));
          a.setDataFinal(new Data(02, 01, 2014));
          a.setDuracaoContrato(12);
 
+         alugueis.add(a);
+         
      }
     
     private void populaPessoa() {
