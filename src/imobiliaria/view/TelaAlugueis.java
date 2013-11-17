@@ -140,7 +140,6 @@ public class TelaAlugueis extends Tela {
         valor = Float.parseFloat(scan.nextLine());
 
         controlador.adicionaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, parcelas, valor);
-
     }
 
     private Pessoa selecionaPessoa() {
@@ -184,28 +183,26 @@ public class TelaAlugueis extends Tela {
         if (aluguel != null) {
             mostraAluguel(aluguel);
 
-            System.out.println("Adicionar Locatario");
+            System.out.println("Editar Locatario");
             locatario = selecionaPessoa();
 
-            System.out.println("Adicionar Data Inicio");
+            System.out.println("Editar Data Inicio");
             dataInicio = lerData();
 
-            System.out.println("Adicionar Data Final");
+            System.out.println("Editar Data Final");
             dataFinal = lerData();
 
-            System.out.println("Adicionar Duração Contrato");
+            System.out.println("Editar Duração Contrato");
             duracaoContrato = Integer.parseInt(scan.nextLine());
 
-            System.out.println("Adicionar numero de Parcelas");
+            System.out.println("Editar numero de Parcelas");
             parcelas = Integer.parseInt(scan.nextLine());
 
-            System.out.println("Digite o valor do Aluguel:");
+            System.out.println("Editar o valor do Aluguel:");
             valor = Float.parseFloat(scan.nextLine());
 
-            controlador.adicionaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, parcelas, valor);
-
+            controlador.editaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, parcelas, valor);
         }
-
     }
 
     private void removerAluguel() {
