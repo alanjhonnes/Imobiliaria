@@ -44,7 +44,8 @@ public class TelaAlugueis extends Tela {
             System.out.println("3. Editar.");
             System.out.println("4. Remover.");
             System.out.println("5. Registrar Pagamento.");
-            System.out.println("6. Sair.");
+            System.out.println("6. Relátorio.");
+            System.out.println("7. Sair.");
 
             System.out.println("Digite a opcao desejada:");
             input = scan.nextLine();
