@@ -8,6 +8,7 @@ import imobiliaria.controller.Controlador;
 import imobiliaria.controller.ControladorAlugueis;
 import imobiliaria.model.Aluguel;
 import imobiliaria.model.Data;
+import imobiliaria.model.Parcela;
 import imobiliaria.model.Pessoa;
 import java.util.List;
 import java.util.Scanner;
@@ -220,25 +221,65 @@ public class TelaAlugueis extends Tela {
 
     private void registrarPgtoAluguel() {
         System.out.println("Registra Pagamento Aluguel");
-        System.out.println("Digite o ID do Locatario: ");
+        System.out.println("Digite o ID do aluguel: ");
         input = scan.nextLine();
         int id = Integer.parseInt(input);
         Aluguel aluguel = controlador.buscaAluguel(id);
         if (aluguel != null) {
-            aluguel.getParcelas();
+            List<Parcela> parcelas = aluguel.getParcelas();
+            
+            listarParcelas(parcelas);
+            
+            int numero;
+            boolean encontrada = false;
+            Parcela parcela = null;
+            do {
+                System.out.println("Digite o número da parcela a ser paga:");
+                numero = Integer.parseInt(scan.nextLine());
+                if(numero < parcelas.size()){
+                    parcela = parcelas.get(numero);
+                    parcela.setPaga(true);
+                    encontrada = true;
+                }
+                else {
+                    System.out.println("Parcela nao encontrada.");
+                }
+            }
+            while(encontrada == false);
 
         } else {
-            System.out.println("Locatario nao encontrado.");
+            System.out.println("Aluguel nao encontrado.");
         }
-        Parcelas.get(numero);
-        Parcelas.setPaga(true);
+        
     }
 
     private void relatorio() {
         System.out.println("Parcela Pagas e Devidas: ");
-        System.out.println("Locatario: " + aluguel.getLocatario());
-        System.out.println("Imovel: " + aluguel.getImovel());
-        System.out.println("Parcelas: " + aluguel.getParcelas());
-        System.out.println("Preço: " + aluguel.getValor());
+        for (int i = 0; i < alugueis.size(); i++) {
+            Aluguel aluguel = alugueis.get(i);
+            List<Parcela> parcelas = aluguel.getParcelas();
+            System.out.println("Locatario: " + aluguel.getLocatario());
+            System.out.println("Imovel: " + aluguel.getImovel());
+            System.out.println("Parcelas: " + aluguel.getParcelas().size());
+            System.out.println("Preço: " + aluguel.getValor());
+            
+            listarParcelas(parcelas);
+            
+        }
+        
+        
+        
+        
+    }
+
+    private void listarParcelas(List<Parcela> parcelas) {
+        for (int i = 0; i < parcelas.size(); i++) {
+            Parcela parcela = parcelas.get(i);
+            System.out.println("Parcela " + i);
+            System.out.println("Paga:" + parcela.isPaga());
+            System.out.println("Valor: " + parcela.getValor());
+            System.out.println("Dia Vencimento: " + parcela.getDiaVencimento());
+            System.out.println("-------");
+        }
     }
 }
