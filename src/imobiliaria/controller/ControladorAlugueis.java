@@ -7,6 +7,7 @@ package imobiliaria.controller;
 import imobiliaria.gerenciador.GerenciadorAluguel;
 import imobiliaria.gerenciador.GerenciadorPessoa;
 import imobiliaria.model.Aluguel;
+import imobiliaria.model.Data;
 import imobiliaria.model.Pessoa;
 import java.util.List;
 
@@ -40,6 +41,21 @@ public class ControladorAlugueis extends Controlador{
 
     public void removeAluguel(Aluguel aluguel) {
         GerenciadorAluguel.remove(aluguel);
+    }
+    
+    public void adicionaAluguel(Aluguel aluguel){
+        GerenciadorAluguel.adicionaAluguel(aluguel);
+    }
+
+    public void adicionaAluguel(Pessoa locatario, Data dataInicio, Data dataFinal, int duracaoContrato, int parcelas, float valor) {
+        Aluguel aluguel = new Aluguel();
+        aluguel.setLocatario(locatario);
+        aluguel.setDataInicio(dataInicio);
+        aluguel.setDataFinal(dataFinal);
+        aluguel.setValor(valor);
+        aluguel.setDuracaoContrato(duracaoContrato);
+        aluguel.setId(GerenciadorAluguel.geraIDAluguel());
+        GerenciadorAluguel.adicionaAluguel(aluguel);
     }
     
     

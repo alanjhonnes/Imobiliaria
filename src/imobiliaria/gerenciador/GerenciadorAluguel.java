@@ -41,5 +41,17 @@ public class GerenciadorAluguel {
         }
         return null;
     }
+    
+    public static void adicionaAluguel(Aluguel aluguel){
+        alugueis.add(aluguel);
+    }
+    
+    public static void adicionaParcela(int idAluguel){
+        
+    }
+    
+    public static void adicionaParcela(Aluguel aluguel){
+        
+    }
 
 }

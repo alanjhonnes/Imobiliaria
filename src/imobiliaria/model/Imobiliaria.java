@@ -91,5 +91,7 @@ public class Imobiliaria {
          a.setDataFinal(new Data(02, 01, 2014));
          a.setDuracaoContrato(12);
 
+         alugueis.add(a);
+         
      }
 }
