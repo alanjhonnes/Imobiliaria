@@ -36,7 +36,7 @@ public class TelaAlugueis extends Tela {
         int opcao = 0;
         Scanner scan = new Scanner(System.in);
 
-        while (opcao != 6) {
+        while (opcao != 7) {
 
             System.out.println("== Menu Aluguel ==");
             System.out.println("1. Listar.");
@@ -69,6 +69,10 @@ public class TelaAlugueis extends Tela {
 
                 case 5:
                     registrarPgtoAluguel();
+                    break;
+
+                case 6:
+                    relatorio();
                     break;
             }
         }
@@ -104,7 +108,7 @@ public class TelaAlugueis extends Tela {
     }
 
     private void adicionarAluguel() {
-        
+
         Aluguel a = new Aluguel();
         int id;
         Pessoa locatario;
@@ -115,31 +119,29 @@ public class TelaAlugueis extends Tela {
         float valor;
 
         System.out.println("Adicionar Aluguel");
-        
+
         System.out.println("Adicionar Locatario");
         locatario = selecionaPessoa();
-               
+
         System.out.println("Adicionar Data Inicio");
         dataInicio = lerData();
-               
+
         System.out.println("Adicionar Data Final");
         dataFinal = lerData();
-         
+
         System.out.println("Adicionar Duração Contrato");
         duracaoContrato = Integer.parseInt(scan.nextLine());
-        
+
         System.out.println("Adicionar numero de Parcelas");
         parcelas = Integer.parseInt(scan.nextLine());
-        
+
         System.out.println("Digite o valor do Aluguel:");
         valor = Float.parseFloat(scan.nextLine());
-        
-        
-        //MR COROLA
+
         controlador.adicionaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, parcelas, valor);
-        
-    }          
-        
+
+    }
+
     private Pessoa selecionaPessoa() {
         Pessoa proprietario = null;
         while (proprietario == null) {
@@ -157,18 +159,56 @@ public class TelaAlugueis extends Tela {
         System.out.println("Dia(DD):");
         int dia = Integer.parseInt(scan.nextLine());
         System.out.println("Mês(MM):");
-        int mes = Integer.parseInt(scan.nextLine()); 
+        int mes = Integer.parseInt(scan.nextLine());
         System.out.println("Ano(AAAA):");
         int ano = Integer.parseInt(scan.nextLine());
         return new Data(dia, mes, ano);
     }
 
     private void editarAluguel() {
-        
+
+        int id;
+        Pessoa locatario;
+        Data dataInicio;
+        Data dataFinal;
+        int duracaoContrato;
+        int parcelas;
+        float valor;
+
+        System.out.println("Editar Aluguel");
+        System.out.println("Digite o ID do Aluguel: ");
+        input = scan.nextLine();
+        id = Integer.parseInt(input);
+        Aluguel aluguel = controlador.buscaAluguel(id);
+        if (aluguel != null) {
+            mostraAluguel(aluguel);
+
+            System.out.println("Adicionar Locatario");
+            locatario = selecionaPessoa();
+
+            System.out.println("Adicionar Data Inicio");
+            dataInicio = lerData();
+
+            System.out.println("Adicionar Data Final");
+            dataFinal = lerData();
+
+            System.out.println("Adicionar Duração Contrato");
+            duracaoContrato = Integer.parseInt(scan.nextLine());
+
+            System.out.println("Adicionar numero de Parcelas");
+            parcelas = Integer.parseInt(scan.nextLine());
+
+            System.out.println("Digite o valor do Aluguel:");
+            valor = Float.parseFloat(scan.nextLine());
+
+            controlador.adicionaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, parcelas, valor);
+
+        }
+
     }
 
     private void removerAluguel() {
-       System.out.println("Remover Locatorio");
+        System.out.println("Remover Locatorio");
         System.out.println("Digite o ID do Locatario: ");
         input = scan.nextLine();
         int id = Integer.parseInt(input);
@@ -181,6 +221,10 @@ public class TelaAlugueis extends Tela {
     }
 
     private void registrarPgtoAluguel() {
+
+    }
+
+    private void relatorio() {
         
     }
 }
