@@ -219,10 +219,26 @@ public class TelaAlugueis extends Tela {
     }
 
     private void registrarPgtoAluguel() {
+        System.out.println("Registra Pagamento Aluguel");
+        System.out.println("Digite o ID do Locatario: ");
+        input = scan.nextLine();
+        int id = Integer.parseInt(input);
+        Aluguel aluguel = controlador.buscaAluguel(id);
+        if (aluguel != null) {
+            aluguel.getParcelas();
 
+        } else {
+            System.out.println("Locatario nao encontrado.");
+        }
+        Parcelas.get(numero);
+        Parcelas.setPaga(true);
     }
 
     private void relatorio() {
-        
+        System.out.println("Parcela Pagas e Devidas: ");
+        System.out.println("Locatario: " + aluguel.getLocatario());
+        System.out.println("Imovel: " + aluguel.getImovel());
+        System.out.println("Parcelas: " + aluguel.getParcelas());
+        System.out.println("Preço: " + aluguel.getValor());
     }
 }

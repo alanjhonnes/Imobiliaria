@@ -67,7 +67,4 @@ public class ControladorAlugueis extends Controlador{
         aluguel.setId(GerenciadorAluguel.geraIDAluguel());
         GerenciadorAluguel.adicionaAluguel(aluguel);
     }
-
-    
-    
 }
