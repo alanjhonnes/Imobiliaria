@@ -8,10 +8,8 @@ import imobiliaria.controller.Controlador;
 import imobiliaria.controller.ControladorAlugueis;
 import imobiliaria.model.Aluguel;
 import imobiliaria.model.Data;
-import imobiliaria.model.Imovel;
 import imobiliaria.model.Parcela;
 import imobiliaria.model.Pessoa;
-import imobiliaria.model.Terreno;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,7 +37,7 @@ public class TelaAlugueis extends Tela {
         int opcao = 0;
         Scanner scan = new Scanner(System.in);
 
-        while (opcao != 9) {
+        while (opcao != 7) {
 
             System.out.println("== Menu Aluguel ==");
             System.out.println("1. Listar.");
@@ -47,10 +45,8 @@ public class TelaAlugueis extends Tela {
             System.out.println("3. Editar.");
             System.out.println("4. Remover.");
             System.out.println("5. Registrar Pagamento.");
-            System.out.println("6. Relátorio Completo.");
-            System.out.println("7. Parcelas pagas.");
-            System.out.println("8. Parcelas nao pagas.");
-            System.out.println("9. Sair.");
+            System.out.println("6. Relátorio.");
+            System.out.println("7. Sair.");
 
             System.out.println("Digite a opcao desejada:");
             input = scan.nextLine();
@@ -80,12 +76,6 @@ public class TelaAlugueis extends Tela {
                 case 6:
                     relatorio();
                     break;
-                case 7:
-                    relatorioPagas();
-                    break;
-                case 8:
-                    relatorioNaoPagas();
-                    break;
             }
         }
     }
@@ -100,13 +90,12 @@ public class TelaAlugueis extends Tela {
 
     public void mostraAluguel(Aluguel aluguel) {
         System.out.println("Aluguel: ");
-        System.out.println("Locatario: " + aluguel.getLocatario().getNome());
-        System.out.println("Imovel: " + aluguel.getImovel().getId());
+        System.out.println("Locatario: " + aluguel.getLocatario());
+        System.out.println("Imovel: " + aluguel.getImovel());
         System.out.println("Data Inicio: " + aluguel.getDataInicio());
         System.out.println("Data Final: " + aluguel.getDataFinal());
         System.out.println("Duracao do Contrato: " + aluguel.getDuracaoContrato());
-        List<Parcela> parcelas = aluguel.getParcelas();
-        System.out.println("Parcelas: " + aluguel.getParcelas().size());
+        System.out.println("Parcelas: " + aluguel.getParcelas());
         System.out.println("Preço: " + aluguel.getValor());
     }
 
@@ -122,20 +111,19 @@ public class TelaAlugueis extends Tela {
 
     private void adicionarAluguel() {
 
+        Aluguel a = new Aluguel();
+        int id;
         Pessoa locatario;
-        Terreno imovel;
         Data dataInicio;
         Data dataFinal;
         int duracaoContrato;
+        int parcelas;
         float valor;
 
         System.out.println("Adicionar Aluguel");
 
-        System.out.println("Selecionar Locatario");
+        System.out.println("Adicionar Locatario");
         locatario = selecionaPessoa();
-
-        System.out.println("Selecionar Imovel");
-        imovel = selecionaImovel();
 
         System.out.println("Adicionar Data Inicio");
         dataInicio = lerData();
@@ -146,10 +134,13 @@ public class TelaAlugueis extends Tela {
         System.out.println("Adicionar Duração Contrato");
         duracaoContrato = Integer.parseInt(scan.nextLine());
 
+        System.out.println("Adicionar numero de Parcelas");
+        parcelas = Integer.parseInt(scan.nextLine());
+
         System.out.println("Digite o valor do Aluguel:");
         valor = Float.parseFloat(scan.nextLine());
 
-        controlador.adicionaAluguel(locatario, imovel, dataInicio, dataFinal, duracaoContrato, valor);
+        controlador.adicionaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, parcelas, valor);
     }
 
     private Pessoa selecionaPessoa() {
@@ -163,22 +154,6 @@ public class TelaAlugueis extends Tela {
             }
         }
         return proprietario;
-    }
-
-    private Terreno selecionaImovel() {
-        Terreno imovel = null;
-        while (imovel == null) {
-            System.out.println("Digite o id do imóvel:");
-            int id = Integer.parseInt(scan.nextLine());
-            imovel = controlador.buscaImovel(id);
-            if (imovel == null) {
-                System.out.println("Imovel nao encontrado.");
-            } else if (imovel.getEstado().equals(Imovel.ESTADO_VENDA)) {
-                System.out.println("Imovel nao está para locação.");
-                imovel = null;
-            }
-        }
-        return imovel;
     }
 
     private Data lerData() {
@@ -198,8 +173,8 @@ public class TelaAlugueis extends Tela {
         Data dataInicio;
         Data dataFinal;
         int duracaoContrato;
+        int parcelas;
         float valor;
-        Terreno imovel;
 
         System.out.println("Editar Aluguel");
         System.out.println("Digite o ID do Aluguel: ");
@@ -212,22 +187,22 @@ public class TelaAlugueis extends Tela {
             System.out.println("Editar Locatario");
             locatario = selecionaPessoa();
 
-            System.out.println("Editar Imovel");
-            imovel = selecionaImovel();
-
             System.out.println("Editar Data Inicio");
             dataInicio = lerData();
 
             System.out.println("Editar Data Final");
             dataFinal = lerData();
 
-            System.out.println("Editar Duração Contrato (meses)");
+            System.out.println("Editar Duração Contrato");
             duracaoContrato = Integer.parseInt(scan.nextLine());
+
+            System.out.println("Editar numero de Parcelas");
+            parcelas = Integer.parseInt(scan.nextLine());
 
             System.out.println("Editar o valor do Aluguel:");
             valor = Float.parseFloat(scan.nextLine());
 
-            controlador.editaAluguel(aluguel, locatario, imovel, dataInicio, dataFinal, duracaoContrato, valor);
+            controlador.editaAluguel(locatario, dataInicio, dataFinal, duracaoContrato, parcelas, valor);
         }
     }
 
@@ -238,11 +213,9 @@ public class TelaAlugueis extends Tela {
         int id = Integer.parseInt(input);
         Aluguel aluguel = controlador.buscaAluguel(id);
         if (aluguel != null) {
-            if (controlador.removeAluguel(aluguel)) {
-                System.out.println("Locatario removido com sucesso.");
-            } else {
-                System.out.println("Locatario nao encontrado.");
-            }
+            controlador.removeAluguel(aluguel);
+        } else {
+            System.out.println("Locatario nao encontrado.");
         }
     }
 
@@ -254,28 +227,30 @@ public class TelaAlugueis extends Tela {
         Aluguel aluguel = controlador.buscaAluguel(id);
         if (aluguel != null) {
             List<Parcela> parcelas = aluguel.getParcelas();
-
+            
             listarParcelas(parcelas);
-
+            
             int numero;
             boolean encontrada = false;
             Parcela parcela = null;
             do {
                 System.out.println("Digite o número da parcela a ser paga:");
                 numero = Integer.parseInt(scan.nextLine());
-                if (numero < parcelas.size()) {
+                if(numero < parcelas.size()){
                     parcela = parcelas.get(numero);
                     parcela.setPaga(true);
                     encontrada = true;
-                } else {
+                }
+                else {
                     System.out.println("Parcela nao encontrada.");
                 }
-            } while (encontrada == false);
+            }
+            while(encontrada == false);
 
         } else {
             System.out.println("Aluguel nao encontrado.");
         }
-
+        
     }
 
     private void relatorio() {
@@ -287,37 +262,14 @@ public class TelaAlugueis extends Tela {
             System.out.println("Imovel: " + aluguel.getImovel());
             System.out.println("Parcelas: " + aluguel.getParcelas().size());
             System.out.println("Preço: " + aluguel.getValor());
-
+            
             listarParcelas(parcelas);
+            
         }
-    }
-
-    private void relatorioPagas() {
-        System.out.println("Parcela Pagas: ");
-        for (int i = 0; i < alugueis.size(); i++) {
-            Aluguel aluguel = alugueis.get(i);
-            List<Parcela> parcelas = aluguel.getParcelas();
-            System.out.println("Locatario: " + aluguel.getLocatario());
-            System.out.println("Imovel: " + aluguel.getImovel());
-            System.out.println("Parcelas: " + aluguel.getParcelas().size());
-            System.out.println("Preço: " + aluguel.getValor());
-
-            listarParcelasPagas(parcelas);
-        }
-    }
-
-    private void relatorioNaoPagas() {
-        System.out.println("Parcela Devidas: ");
-        for (int i = 0; i < alugueis.size(); i++) {
-            Aluguel aluguel = alugueis.get(i);
-            List<Parcela> parcelas = aluguel.getParcelas();
-            System.out.println("Locatario: " + aluguel.getLocatario());
-            System.out.println("Imovel: " + aluguel.getImovel());
-            System.out.println("Parcelas: " + aluguel.getParcelas().size());
-            System.out.println("Preço: " + aluguel.getValor());
-
-            listarParcelasNaoPagas(parcelas);
-        }
+        
+        
+        
+        
     }
 
     private void listarParcelas(List<Parcela> parcelas) {
@@ -328,30 +280,6 @@ public class TelaAlugueis extends Tela {
             System.out.println("Valor: " + parcela.getValor());
             System.out.println("Dia Vencimento: " + parcela.getDiaVencimento());
             System.out.println("-------");
-        }
-    }
-
-    private void listarParcelasPagas(List<Parcela> parcelas) {
-        for (int i = 0; i < parcelas.size(); i++) {
-            Parcela parcela = parcelas.get(i);
-            if (parcela.isPaga()) {
-                System.out.println("Parcela " + i);
-                System.out.println("Valor: " + parcela.getValor());
-                System.out.println("Dia Vencimento: " + parcela.getDiaVencimento());
-                System.out.println("-------");
-            }
-        }
-    }
-
-    private void listarParcelasNaoPagas(List<Parcela> parcelas) {
-        for (int i = 0; i < parcelas.size(); i++) {
-            Parcela parcela = parcelas.get(i);
-            if (!parcela.isPaga()) {
-                System.out.println("Parcela " + i);
-                System.out.println("Valor: " + parcela.getValor());
-                System.out.println("Dia Vencimento: " + parcela.getDiaVencimento());
-                System.out.println("-------");
-            }
         }
     }
 }

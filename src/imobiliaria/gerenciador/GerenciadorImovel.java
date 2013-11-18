@@ -6,7 +6,6 @@
 package imobiliaria.gerenciador;
 
 import static imobiliaria.gerenciador.GerenciadorPessoa.pessoas;
-import imobiliaria.model.Aluguel;
 import imobiliaria.model.Casa;
 import imobiliaria.model.Pessoa;
 import imobiliaria.model.Predio;
@@ -52,16 +51,8 @@ public class GerenciadorImovel {
         imoveis.add(t);
     }
 
-    public static boolean remove(Terreno imovel) {
-        List<Aluguel> alugueis = GerenciadorAluguel.getAlugueis();
-        for (int i = 0; i < alugueis.size(); i++) {
-            Aluguel aluguel = alugueis.get(i);
-            if(aluguel.getImovel() == imovel){
-                return false;
-            }
-        }
-        imoveis.remove(imovel);
-        return true;
+    public static void remove(Terreno terreno) {
+        imoveis.remove(terreno);
         
     }
 

@@ -5,12 +5,10 @@
 package imobiliaria.controller;
 
 import imobiliaria.gerenciador.GerenciadorAluguel;
-import imobiliaria.gerenciador.GerenciadorImovel;
 import imobiliaria.gerenciador.GerenciadorPessoa;
 import imobiliaria.model.Aluguel;
 import imobiliaria.model.Data;
 import imobiliaria.model.Pessoa;
-import imobiliaria.model.Terreno;
 import java.util.List;
 
 /**
@@ -49,9 +47,8 @@ public class ControladorAlugueis extends Controlador{
         GerenciadorAluguel.adicionaAluguel(aluguel);
     }
 
-    public void adicionaAluguel(Pessoa locatario, Terreno imovel, Data dataInicio, Data dataFinal, int duracaoContrato, float valor) {
+    public void adicionaAluguel(Pessoa locatario, Data dataInicio, Data dataFinal, int duracaoContrato, int parcelas, float valor) {
         Aluguel aluguel = new Aluguel();
-        aluguel.setImovel(imovel);
         aluguel.setLocatario(locatario);
         aluguel.setDataInicio(dataInicio);
         aluguel.setDataFinal(dataFinal);
@@ -60,17 +57,14 @@ public class ControladorAlugueis extends Controlador{
         aluguel.setId(GerenciadorAluguel.geraIDAluguel());
         GerenciadorAluguel.adicionaAluguel(aluguel);
     }
-    
-    public void editaAluguel(Aluguel aluguel, Pessoa locatario, Terreno imovel, Data dataInicio, Data dataFinal, int duracaoContrato, float valor) {
-        aluguel.setImovel(imovel);
+    public void editaAluguel(Pessoa locatario, Data dataInicio, Data dataFinal, int duracaoContrato, int parcelas, float valor) {
+        Aluguel aluguel = new Aluguel();
         aluguel.setLocatario(locatario);
         aluguel.setDataInicio(dataInicio);
         aluguel.setDataFinal(dataFinal);
         aluguel.setValor(valor);
         aluguel.setDuracaoContrato(duracaoContrato);
-    }
-
-    public Terreno buscaImovel(int id) {
-        return GerenciadorImovel.buscaImovelPorId(id);
+        aluguel.setId(GerenciadorAluguel.geraIDAluguel());
+        GerenciadorAluguel.adicionaAluguel(aluguel);
     }
 }

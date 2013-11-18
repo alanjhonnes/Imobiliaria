@@ -12,6 +12,7 @@ import java.util.List;
  * @author alan.jbssa
  */
 public class Imobiliaria {
+
     private List<Terreno> imoveis;
     private List<Pessoa> pessoas;
     private List<Aluguel> alugueis;
@@ -22,7 +23,7 @@ public class Imobiliaria {
         pessoas = new ArrayList<>();
         alugueis = new ArrayList<>();
         vendas = new ArrayList<>();
-        
+
         popula();
     }
 
@@ -66,9 +67,9 @@ public class Imobiliaria {
         p.setEndereco("Rua joaquim vilela 255");
         p.setNome("Alan");
         p.setTelefone("555555555");
-        
+
         pessoas.add(p);
-        
+
         Terreno t = new Terreno();
         t.setDataCadastro(new Data(13, 10, 2013));
         t.setEndereco("Avenida eng. Steuvax 2522");
@@ -78,26 +79,23 @@ public class Imobiliaria {
         t.setPreco(5456454);
         t.setProprietario(p);
         imoveis.add(t);
-        
-        
-        Aluguel a = new Aluguel();
-       
-         a.setLocatario(p);
-         a.setImovel(t);
-         a.setDataInicio(new Data(02, 01, 2013));
-         a.setDataFinal(new Data(02, 01, 2014));
-         a.setDuracaoContrato(12);
 
-         alugueis.add(a);
-        
         populaAluguel();
     }
-    
+
     private void populaAluguel() {
-         
-         
-     }
-    
+        Aluguel a = new Aluguel();
+        Pessoa p = new Pessoa();
+        p.setNome("Zueira Zuado");
+        a.setLocatario(p);
+        a.setDataInicio(new Data(02, 01, 2013));
+        a.setDataFinal(new Data(02, 01, 2014));
+        a.setDuracaoContrato(12);
+
+        alugueis.add(a);
+
+    }
+
     private void populaPessoa() {
         Pessoa pessoa = new Pessoa();
         pessoa.setCPF("123");
@@ -106,6 +104,17 @@ public class Imobiliaria {
         pessoa.setEndereco("Diadema Mano :D");
         pessoa.setNome("Patrick");
         pessoa.setTelefone("555555555");
-    
-    }    
+
+    }
+
+    private void populaVenda() {
+        Pessoa p = new Pessoa();
+        Venda v = new Venda();
+
+        v.setNome("Apartamento 3 Anjos");
+        v.setEndereco("Rua Joaquim Vilela");
+        v.setValor((int) 500.00);
+        vendas.add(v);
+
+    }
 }
