@@ -238,11 +238,10 @@ public class TelaAlugueis extends Tela {
         int id = Integer.parseInt(input);
         Aluguel aluguel = controlador.buscaAluguel(id);
         if (aluguel != null) {
-            if (controlador.removeAluguel(aluguel)) {
-                System.out.println("Locatario removido com sucesso.");
-            } else {
-                System.out.println("Locatario nao encontrado.");
-            }
+            controlador.removeAluguel(aluguel);
+            System.out.println("Locatario removido com sucesso.");
+        } else {
+            System.out.println("Locatario nao encontrado.");
         }
     }
 
