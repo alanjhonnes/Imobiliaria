@@ -229,7 +229,7 @@ public class TelaAlugueis extends Tela {
             valor = Float.parseFloat(scan.nextLine());
             
 
-            controlador.editaAluguel(locatario, imovel, dataInicio, dataFinal, duracaoContrato, valor);
+            controlador.editaAluguel(aluguel, locatario, imovel, dataInicio, dataFinal, duracaoContrato, valor);
         }
     }
 

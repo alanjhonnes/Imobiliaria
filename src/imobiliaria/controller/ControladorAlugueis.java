@@ -61,15 +61,13 @@ public class ControladorAlugueis extends Controlador{
         GerenciadorAluguel.adicionaAluguel(aluguel);
     }
     
-    public void editaAluguel(Pessoa locatario, Terreno imovel, Data dataInicio, Data dataFinal, int duracaoContrato, float valor) {
-        Aluguel aluguel = new Aluguel();
+    public void editaAluguel(Aluguel aluguel, Pessoa locatario, Terreno imovel, Data dataInicio, Data dataFinal, int duracaoContrato, float valor) {
         aluguel.setImovel(imovel);
         aluguel.setLocatario(locatario);
         aluguel.setDataInicio(dataInicio);
         aluguel.setDataFinal(dataFinal);
         aluguel.setValor(valor);
         aluguel.setDuracaoContrato(duracaoContrato);
-        GerenciadorAluguel.adicionaAluguel(aluguel);
     }
 
     public Terreno buscaImovel(int id) {
