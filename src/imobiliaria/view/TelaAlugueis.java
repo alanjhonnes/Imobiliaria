@@ -133,7 +133,7 @@ public class TelaAlugueis extends Tela {
 
         System.out.println("Selecionar Locatario");
         locatario = selecionaPessoa();
-        
+
         System.out.println("Selecionar Imovel");
         imovel = selecionaImovel();
 
@@ -164,7 +164,7 @@ public class TelaAlugueis extends Tela {
         }
         return proprietario;
     }
-    
+
     private Terreno selecionaImovel() {
         Terreno imovel = null;
         while (imovel == null) {
@@ -173,8 +173,7 @@ public class TelaAlugueis extends Tela {
             imovel = controlador.buscaImovel(id);
             if (imovel == null) {
                 System.out.println("Imovel nao encontrado.");
-            }
-            else if(imovel.getEstado().equals(Imovel.ESTADO_VENDA)){
+            } else if (imovel.getEstado().equals(Imovel.ESTADO_VENDA)) {
                 System.out.println("Imovel nao está para locação.");
                 imovel = null;
             }
@@ -212,7 +211,7 @@ public class TelaAlugueis extends Tela {
 
             System.out.println("Editar Locatario");
             locatario = selecionaPessoa();
-            
+
             System.out.println("Editar Imovel");
             imovel = selecionaImovel();
 
@@ -227,7 +226,6 @@ public class TelaAlugueis extends Tela {
 
             System.out.println("Editar o valor do Aluguel:");
             valor = Float.parseFloat(scan.nextLine());
-            
 
             controlador.editaAluguel(aluguel, locatario, imovel, dataInicio, dataFinal, duracaoContrato, valor);
         }
@@ -240,9 +238,11 @@ public class TelaAlugueis extends Tela {
         int id = Integer.parseInt(input);
         Aluguel aluguel = controlador.buscaAluguel(id);
         if (aluguel != null) {
-            controlador.removeAluguel(aluguel);
-        } else {
-            System.out.println("Locatario nao encontrado.");
+            if (controlador.removeAluguel(aluguel)) {
+                System.out.println("Locatario removido com sucesso.");
+            } else {
+                System.out.println("Locatario nao encontrado.");
+            }
         }
     }
 
@@ -291,7 +291,7 @@ public class TelaAlugueis extends Tela {
             listarParcelas(parcelas);
         }
     }
-    
+
     private void relatorioPagas() {
         System.out.println("Parcela Pagas: ");
         for (int i = 0; i < alugueis.size(); i++) {
@@ -305,7 +305,7 @@ public class TelaAlugueis extends Tela {
             listarParcelasPagas(parcelas);
         }
     }
-    
+
     private void relatorioNaoPagas() {
         System.out.println("Parcela Devidas: ");
         for (int i = 0; i < alugueis.size(); i++) {
