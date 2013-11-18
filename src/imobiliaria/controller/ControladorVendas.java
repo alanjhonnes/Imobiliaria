@@ -4,7 +4,11 @@
  */
 package imobiliaria.controller;
 
+import imobiliaria.gerenciador.GerenciadorImovel;
+import imobiliaria.gerenciador.GerenciadorPessoa;
 import imobiliaria.gerenciador.GerenciadorVenda;
+import imobiliaria.model.Pessoa;
+import imobiliaria.model.Terreno;
 import imobiliaria.model.Venda;
 import java.util.List;
 
@@ -28,28 +32,29 @@ public class ControladorVendas extends Controlador {
         this.vendas = vendas;
     }
     
-    public void adicionaInteressado (String nome, String CPF, String telefone, String email) {
-        Venda venda = new Venda();
-        venda.setNome(nome);
-        venda.setEndereco(CPF);
-        venda.setTelefone(telefone);
-        venda.setEmail(email);
-        GerenciadorVenda.adicionaInteressado(null);
-    }
-    
-    public Venda buscaVenda(String endereco) {
-        return GerenciadorVenda.buscaImovelPorEndereco(endereco);
+    public void adicionaInteressado (Venda venda, Pessoa interessado) {
+        GerenciadorVenda.adicionaInteressado(venda, interessado);
     }
     
     public void removeVenda(Venda venda) {
         GerenciadorVenda.removeVenda(venda);
     }
-    
-    public void editaVenda(Venda venda, String nome, String CPF, String endereco, String telefone, int valor, String email) {
-        venda.setNome(nome);
-        venda.setEndereco(endereco);
-        venda.setValor(valor);
-        venda.setImovel(null);
-        venda.setInteressados(null);
+
+    public Pessoa buscaPessoa(String cpf) {
+        return GerenciadorPessoa.buscaPessoaPorCPF(cpf);
     }
+
+    public Venda buscaVendaPorIdImovel(int id) {
+        return GerenciadorVenda.buscaVendaPorIdImovel(id);
+        
+    }
+
+    public Terreno buscaImovelPorId(int id) {
+        return GerenciadorImovel.buscaImovelPorId(id);
+    }
+
+    public void adicionaVenda(Terreno imovel) {
+        GerenciadorVenda.adicionaVenda(imovel);
+    }
+
 }

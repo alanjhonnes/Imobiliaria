@@ -6,7 +6,9 @@ package imobiliaria.view;
 
 import imobiliaria.controller.Controlador;
 import imobiliaria.controller.ControladorVendas;
+import imobiliaria.model.Imovel;
 import imobiliaria.model.Pessoa;
+import imobiliaria.model.Terreno;
 import imobiliaria.model.Venda;
 import java.util.List;
 
@@ -18,7 +20,6 @@ public class TelaVendas extends Tela {
 
     private ControladorVendas controlador;
     private List<Venda> vendas;
-    private int valor;
 
     public TelaVendas(ControladorVendas controlador, List<Venda> vendas) {
         super(controlador);
@@ -50,87 +51,60 @@ public class TelaVendas extends Tela {
     }
 
     public void mostraVenda(Venda venda) {
-        System.out.println("Imóvel a Venda: " + venda.getNome());
-        System.out.println("Interessados no Imóvel:" + venda.getInteressados());
-        System.out.println("Preço do Imóvel:" + venda.getValor());
-        System.out.println("Endereço do Imóvel:" + venda.getEndereco());
-
-    }
-
-    private void adicionaInteressado() {
-        Pessoa pessoa = new Pessoa();
-
-        String nome;
-        String CPF;
-        String telefone;
-        String email;
-
-        System.out.println("\nAdicionar Pessoas\n");
-
-        System.out.println("Digite o Nome: ");
-        nome = scan.nextLine();
-
-        System.out.println("Digite o CPF: ");
-        CPF = scan.nextLine();
-
-        System.out.println("Digite o Telefone:");
-        telefone = scan.nextLine();
-
-        System.out.println("Digite o Email:");
-        email = scan.nextLine();
-
-        controlador.adicionaInteressado (nome, CPF, telefone, email);
-    }
-
-    private void editaVenda() {
-        
-        String nome;
-        String CPF;
-
-        String endereco;
-        String telefone;
-        String email;
-
-        System.out.println("Editar Status da Venda");
-
-        System.out.println("Digite o CPF da Pessoa: ");
-        endereco = scan.nextLine();
-        Venda venda = controlador.buscaVenda(endereco);
-        if (venda != null) {
-            mostraVenda (venda);
-
-            System.out.println("Digite o Nome: ");
-            nome = scan.nextLine();
-
-            System.out.println("Digite o CPF: ");
-            CPF = scan.nextLine();
-
-            System.out.println("Digite o Endereço:");
-            endereco = scan.nextLine();
-
-            System.out.println("Digite o Telefone:");
-            telefone = scan.nextLine();
-
-            System.out.println("Digite o Email:");
-            email = scan.nextLine();
-
-            controlador.editaVenda(venda, nome, CPF, endereco, telefone, valor, email);
-
-        } else {
-            System.out.println("Pessoa nao encontrada.");
+        System.out.println("Imóvel a Venda: " + venda.getImovel().getId());
+        List<Pessoa> interessados = venda.getInteressados();
+        System.out.println("Interessados no Imóvel: " + interessados.size());
+        for (int i = 0; i < interessados.size(); i++) {
+            Pessoa pessoa = interessados.get(i);
+            System.out.println(pessoa.getNome());
+            System.out.println("---------");
         }
     }
 
-    private void removerImóvel() {
-        System.out.println("Remover Imóvel");
-        System.out.println("Digite o Imóvel a ser removido: ");
+    private void adicionaInteressado() {
+        Venda venda = selecionaVenda();
+        Pessoa interessado = selecionaPessoa();
+        controlador.adicionaInteressado(venda, interessado);
+        System.out.println("Interessado adicionado com sucesso.");
+    }
+
+    private Pessoa selecionaPessoa() {
+        Pessoa interessado = null;
+        while (interessado == null) {
+            System.out.println("Digite o CPF da pessoa interessada:");
+            String cpf = scan.nextLine();
+            interessado = controlador.buscaPessoa(cpf);
+            if (interessado == null) {
+                System.out.println("CPF nao encontrado.");
+            }
+        }
+        return interessado;
+    }
+
+    private Venda selecionaVenda() {
+        Venda venda = null;
+        while (venda == null) {
+            System.out.println("Digite o ID do imóvel:");
+            int id = Integer.parseInt(scan.nextLine());
+            venda = controlador.buscaVendaPorIdImovel(id);
+            if (venda == null) {
+                System.out.println("Venda nao encontrada.");
+            }
+        }
+        return venda;
+    }
+
+    private void removerVenda() {
+        System.out.println("Remover Venda");
+        System.out.println("Digite o id do imovel da venda a ser removida: ");
         input = scan.nextLine();
-        String Endereco = String.valueOf(input);
-        Venda venda = controlador.buscaVenda(Endereco);
-        if (Endereco != null) {
+        int id = Integer.parseInt(input);
+        Venda venda = controlador.buscaVendaPorIdImovel(id);
+        if (venda != null) {
             controlador.removeVenda(venda);
+            System.out.println("Venda removida");
         } else {
-            System.out.println("Imóvel não Localizado");
+            System.out.println("Venda não Localizada");
         }
     }
 
@@ -140,10 +114,10 @@ public class TelaVendas extends Tela {
 
         while (opcao != 5) {
 
-            System.out.println("== Menu Pessoas ==");
+            System.out.println("== Menu Vendas ==");
             System.out.println("1. Listar.");
-            System.out.println("2. Adicionar.");
-            System.out.println("3. Editar");
+            System.out.println("2. Adicionar venda.");
+            System.out.println("3. Adicionar interessado a venda.");
             System.out.println("4. Remover");
             System.out.println("5. Sair.");
 
@@ -155,21 +129,39 @@ public class TelaVendas extends Tela {
                 case 1:
                     mostraVendas();
                     break;
-
                 case 2:
+                    adicionaVenda();
+                    break; 
+                case 3:
                     adicionaInteressado();
                     break;
-
-                case 3:
-                 editaVenda();
-                 break;
-
                 case 4:
-                    removerImóvel();
-                    System.out.println("Digite o Endereço do Imóvel:");
+                    removerVenda();
                     break;
-
             }
         }
+    }
+
+    private void adicionaVenda() {
+        System.out.println("Adicionar venda");
+        Terreno imovel = selecionaImovel();
+        controlador.adicionaVenda(imovel);
+    }
+
+    private Terreno selecionaImovel() {
+        Terreno imovel = null;
+        while(imovel == null){
+            System.out.println("Digite o id do imovel a venda:");
+            int id = Integer.parseInt(scan.nextLine());
+            imovel = controlador.buscaImovelPorId(id);
+            if(imovel == null){
+                System.out.println("Imovel não encontrado.");
+            }
+            else if(imovel.getEstado().equals(Imovel.ESTADO_LOCACAO)){
+                System.out.println("Imovel não está a venda.");
+                imovel = null;
+            }
+        }
+        return imovel;
     }
 }

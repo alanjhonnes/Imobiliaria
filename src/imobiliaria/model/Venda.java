@@ -23,10 +23,6 @@ public class Venda {
         interessados = new ArrayList<>();
         this.imovel = imovel;
     }
-    
-    public void inseriInteressado(Pessoa pessoa){
-        interessados.add(pessoa);
-    }
 
     public Terreno getImovel() {
         return imovel;
@@ -35,5 +31,11 @@ public class Venda {
     public void setImovel(Terreno imovel) {
         this.imovel = imovel;
     }
+
+    public List<Pessoa> getInteressados() {
+        return interessados;
+    }
+    
+    
     
 }

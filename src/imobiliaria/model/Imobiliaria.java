@@ -73,7 +73,7 @@ public class Imobiliaria {
         t.setDataCadastro(new Data(13, 10, 2013));
         t.setEndereco("Avenida eng. Steuvax 2522");
         t.setEstado(Imovel.ESTADO_LOCACAO);
-        t.setId(1);
+        t.setId(0);
         t.setIptu(5323);
         t.setPreco(5456454);
         t.setProprietario(p);
@@ -89,23 +89,19 @@ public class Imobiliaria {
          a.setDuracaoContrato(12);
 
          alugueis.add(a);
+         
+         Predio predio = new Predio();
+        predio.setDataCadastro(new Data(17, 7, 2013));
+        predio.setEndereco("Avenida nacoes unidas 2000");
+        predio.setEstado(Imovel.ESTADO_VENDA);
+        predio.setId(1);
+        predio.setIptu(5323);
+        predio.setPreco(5456454);
+        predio.setProprietario(p);
+        imoveis.add(predio);
         
-        populaAluguel();
-    }
-    
-    private void populaAluguel() {
-         
-         
-     }
-    
-    private void populaPessoa() {
-        Pessoa pessoa = new Pessoa();
-        pessoa.setCPF("123");
-        pessoa.setDataNascimento(new Data(15, 12, 1993));
-        pessoa.setEmail("patrick.santos.moraes@live.com");
-        pessoa.setEndereco("Diadema Mano :D");
-        pessoa.setNome("Patrick");
-        pessoa.setTelefone("555555555");
-    
+        Venda venda = new Venda(predio);
+        vendas.add(venda);
+   
     }    
 }
